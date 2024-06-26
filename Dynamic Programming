@@ -1,0 +1,23 @@
+#include <iostream>
+#include <unordered_map>
+
+std::unordered_map<int, int> memo;
+
+int fibonacci_dynamic(int n) {
+    if (n <= 1)
+        return n;
+    if (memo.find(n) != memo.end())
+        return memo[n];
+    memo[n] = fibonacci_dynamic(n-1) + fibonacci_dynamic(n-2);
+    return memo[n];
+}
+
+int main() {
+    int n_values[] = {10, 25, 30, 40, 50};
+
+    for (int n : n_values) {
+        std::cout << "Fibonacci(" << n << ") = " << fibonacci_dynamic(n) << std::endl;
+    }
+
+    return 0;
+}
